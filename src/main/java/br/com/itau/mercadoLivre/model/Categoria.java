@@ -4,11 +4,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -16,45 +15,15 @@ import javax.validation.constraints.NotBlank;
 @Table(name = "tb_categoria")
 public class Categoria {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+	private @NotBlank @Column(unique = true) String nome;
+	private Long idCategoriaMae;
 	
-	@NotBlank
-	@Column(unique = true)
-	private String nome;
-	
-	@ManyToOne
-	private Categoria categoriaMae;
-	
-	@OneToMany(mappedBy = "categoriaMae" )
-	private List<Categoria> categoriaFilha;
+	public Categoria() { }
 
-	public Categoria() {}
-
-	public Categoria(Long id, @NotBlank String nome, Categoria categoriaMae, List<Categoria> categoriaFilha) {
-		this.id = id;
+	public Categoria(String nome, Long idCategoriaMae) {
 		this.nome = nome;
-		this.categoriaMae = categoriaMae;
-		this.categoriaFilha = categoriaFilha;
-	}
-
-	public Categoria(@NotBlank String nome2) {}
-
-	public Categoria getCategoriaMae() {
-		return categoriaMae;
-	}
-
-	public void setCategoriaMae(Categoria categoriaMae) {
-		this.categoriaMae = categoriaMae;
-	}
-
-	public List<Categoria> getCategoriaFilha() {
-		return categoriaFilha;
-	}
-
-	public void setCategoriaFilha(List<Categoria> categoriaFilha) {
-		this.categoriaFilha = categoriaFilha;
+		this.idCategoriaMae = idCategoriaMae;
 	}
 
 	public Long getId() {
@@ -64,16 +33,14 @@ public class Categoria {
 	public String getNome() {
 		return nome;
 	}
-	
-	
-	@Override
-	public String toString() {
-		return "Categoria [id=" + id + ", nome=" + nome + ", categoriaMae=" + categoriaMae + ", categoriaFilha="
-				+ categoriaFilha + "]";
-	}
 
-	public Categoria toModel() {
-		return new Categoria(nome);
+	public Long getIdCategoriaMae() {
+		return idCategoriaMae;
 	}
 	
+	public static void persiste(EntityManager entity, List<Caracteristicas> caracteristicas) {
+		caracteristicas.forEach(Caracteristica -> {
+			entity.persist(Caracteristica);
+		});
+	}
 }
