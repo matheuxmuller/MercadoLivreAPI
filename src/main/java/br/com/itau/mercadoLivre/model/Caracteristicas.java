@@ -16,6 +16,9 @@ public class Caracteristicas {
 	private String nome;
 	private BigDecimal valor;
 	private String descricao;
+	
+	@Deprecated
+	public Caracteristicas() {}
 
 	public Caracteristicas(String nome, BigDecimal valor, String descricao) {
 		super();
