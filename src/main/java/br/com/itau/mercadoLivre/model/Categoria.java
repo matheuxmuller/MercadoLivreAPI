@@ -1,29 +1,40 @@
 package br.com.itau.mercadoLivre.model;
 
-import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tb_categoria")
 public class Categoria {
+	
+	/**
+	 * ESSA TA OK
+	 * *
+	 */
 
-	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
-	private @NotBlank @Column(unique = true) String nome;
-	private Long idCategoriaMae;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@NotBlank
+	@Column(nullable = false, unique = true)
+	private String nome;
+	
+	@ManyToOne
+	private Categoria categoriaMae;
 	
 	public Categoria() { }
 
-	public Categoria(String nome, Long idCategoriaMae) {
+	public Categoria(String nome) {
 		this.nome = nome;
-		this.idCategoriaMae = idCategoriaMae;
 	}
 
 	public Long getId() {
@@ -34,13 +45,11 @@ public class Categoria {
 		return nome;
 	}
 
-	public Long getIdCategoriaMae() {
-		return idCategoriaMae;
+	public Categoria getCategoriaMae() {
+		return categoriaMae;
 	}
-	
-	public static void persiste(EntityManager entity, List<Caracteristicas> caracteristicas) {
-		caracteristicas.forEach(Caracteristica -> {
-			entity.persist(Caracteristica);
-		});
+
+	public void setCategoriaMae(Optional<Categoria> categoriaMae) {
+		this.categoriaMae = categoriaMae.get();
 	}
 }
