@@ -7,5 +7,7 @@ import br.com.itau.mercadoLivre.model.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
+  
+  	Optional<Produto> findByNome(String nomeProduto);
 
 }
