@@ -2,9 +2,9 @@ package br.com.itau.mercadoLivre.dto;
 
 import java.math.BigDecimal;
 
-import br.com.zup.mercadolivre.enums.GatewayPagamento;
-import br.com.zup.mercadolivre.enums.StatusCompra;
-import br.com.zup.mercadolivre.model.Compra;
+import br.com.itau.mercadoLivre.enums.GatewayPagamento;
+import br.com.itau.mercadoLivre.enums.StatusCompra;
+import br.com.itau.mercadoLivre.model.Compra;
 
 public class CompraDto {
 	
