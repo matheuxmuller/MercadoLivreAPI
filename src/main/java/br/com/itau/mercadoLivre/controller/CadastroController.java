@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.itau.mercadolivre.dto.UsuarioDto;
-import br.com.itau.mercadolivre.form.UsuarioForm;
-import br.com.itau.mercadolivre.model.Usuario;
-import br.com.itau.mercadolivre.repository.UsuarioRepository;
+import br.com.itau.mercadoLivre.dto.UsuarioDto;
+import br.com.itau.mercadoLivre.form.UsuarioForm;
+import br.com.itau.mercadoLivre.model.Usuario;
+import br.com.itau.mercadoLivre.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping ("/cadastrar")
