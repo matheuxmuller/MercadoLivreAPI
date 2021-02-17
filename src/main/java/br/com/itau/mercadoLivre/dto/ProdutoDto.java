@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.com.itau.mercadolivre.model.Caracteristica;
-import br.com.itau.mercadolivre.model.Produto;
+import br.com.itau.mercadoLivre.model.Caracteristica;
+import br.com.itau.mercadoLivre.model.Produto;
 
 public class ProdutoDto {
 
