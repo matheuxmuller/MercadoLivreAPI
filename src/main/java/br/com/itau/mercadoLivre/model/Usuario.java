@@ -1,53 +1,56 @@
 package br.com.itau.mercadoLivre.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-@Table(name = "tb_usuario")
-public class Usuario {
-	
+public class Usuario implements UserDetails {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Email
 	@NotBlank
-	@Column(unique = true, nullable= false)
-	private String usuario;
+	@NotNull
+	@Column(nullable = false, unique = true)	
+	private String login;
 	
-	@NotBlank
-	@Size(min = 6)
+	@NotNull
+	@NotBlank	
+	@Column(nullable = false)
 	private String senha;
-
-	public Usuario(Long id, @Email @NotBlank String usuario, @NotBlank @Size(min = 6) String senha,
-			LocalDateTime criadoEm) {
-		super();
-		this.id = id;
-		this.usuario = usuario;
-		this.senha = senha;
-		this.criadoEm = criadoEm;
-	}
-
-	private LocalDateTime criadoEm = LocalDateTime.now();
-
-	public Usuario() {}
-
 	
-	public String getSenha() {
-		return senha;
-	}
+	@NotNull
+	@Column(nullable = false)
+	private LocalDateTime cadastradoEm = LocalDateTime.now();
 
-	public void setSenha(String senha) {
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Perfil> perfis = new ArrayList<>();
+
+	public Usuario() { }
+
+	public Usuario(@NotNull String login, @NotNull String senha) {
+		this.login = login;
 		this.senha = senha;
 	}
 
@@ -55,12 +58,51 @@ public class Usuario {
 		return id;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getLogin() {
+		return login;
 	}
 
-	public LocalDateTime getCriadoEm() {
-		return criadoEm;
+	public String getSenha() {
+		return senha;
 	}
-	
+
+	public LocalDateTime getCadastradoEm() {
+		return cadastradoEm;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return this.perfis;
+	}
+
+	@Override
+	public String getPassword() {
+		return this.senha;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.login;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
 }
