@@ -2,9 +2,7 @@ package br.com.itau.mercadoLivre.dto;
 
 import java.util.List;
 import java.util.Optional;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.itau.mercadolivre.dto.ProdutoDto;
-import br.com.itau.mercadolivre.form.ImagensForm;
-import br.com.itau.mercadolivre.form.ProdutoForm;
-import br.com.itau.mercadolivre.form.Uploader;
-import br.com.itau.mercadolivre.model.Produto;
-import br.com.itau.mercadolivre.model.Usuario;
-import br.com.itau.mercadolivre.repository.CategoriaRepository;
-import br.com.itau.mercadolivre.repository.ProdutoRepository;
+import br.com.itau.mercadoLivre.dto.ProdutoDto;
+import br.com.itau.mercadoLivre.form.ImagensForm;
+import br.com.itau.mercadoLivre.form.ProdutoForm;
+import br.com.itau.mercadoLivre.form.Uploader;
+import br.com.itau.mercadoLivre.model.Produto;
+import br.com.itau.mercadoLivre.model.Usuario;
+import br.com.itau.mercadoLivre.repository.CategoriaRepository;
+import br.com.itau.mercadoLivre.repository.ProdutoRepository;
 
 @RestController
 @RequestMapping("/produtos")
