@@ -9,5 +9,7 @@ import br.com.itau.mercadoLivre.model.Categoria;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
+  
+  	Optional<Categoria> findByNome(String nomeCategoriaMae);
 
 }
