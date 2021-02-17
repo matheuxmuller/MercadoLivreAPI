@@ -1,7 +1,6 @@
 package br.com.itau.mercadoLivre.controller;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.itau.mercadolivre.dto.TokenDto;
-import br.com.itau.mercadolivre.form.LoginForm;
-import br.com.itau.mercadolivre.security.TokenService;
+import br.com.itau.mercadoLivre.dto.TokenDto;
+import br.com.itau.mercadoLivre.form.LoginForm;
+import br.com.itau.mercadoLivre.security.TokenService;
 
 @RestController
 @RequestMapping("/logar")
