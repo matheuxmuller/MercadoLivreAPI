@@ -53,5 +53,5 @@ public class CompraDto {
 	public String getUrlPagamento() {
 		return urlPagamento;
 	}
-	
+
 }
