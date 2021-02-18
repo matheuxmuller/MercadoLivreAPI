@@ -3,14 +3,14 @@ package br.com.itau.mercadoLivre.form;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-import br.com.zup.mercadoLivre.enums.GatewayPagamento;
-import br.com.zup.mercadoLivre.model.Compra;
-import br.com.zup.mercadoLivre.model.Produto;
-import br.com.zup.mercadoLivre.model.Usuario;
+import br.com.itau.mercadoLivre.enums.GatewayPagamento;
+import br.com.itau.mercadoLivre.model.Compra;
+import br.com.itau.mercadoLivre.model.Produto;
+import br.com.itau.mercadoLivre.model.Usuario;
 
 public class CompraForm {
 	
-	@Positive(message = "a quantidade é po sitiva")
+	@Positive(message = "a quantidade é positiva")
 	@NotNull(message = "a quantidade é obrigatória")
 	private Long quantidade;
 	
