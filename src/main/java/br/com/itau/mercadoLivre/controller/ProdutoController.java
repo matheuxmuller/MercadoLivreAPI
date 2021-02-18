@@ -2,7 +2,9 @@ package br.com.itau.mercadoLivre.controller;
 
 import java.util.List;
 import java.util.Optional;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,15 +19,19 @@ import org.springframework.web.server.ResponseStatusException;
 import br.com.itau.mercadoLivre.dto.DetalhesProdutoDto;
 import br.com.itau.mercadoLivre.dto.ProdutoDto;
 import br.com.itau.mercadoLivre.form.ImagensForm;
+import br.com.itau.mercadoLivre.form.OpiniaoForm;
+import br.com.itau.mercadoLivre.form.PerguntaForm;
 import br.com.itau.mercadoLivre.form.ProdutoForm;
 import br.com.itau.mercadoLivre.form.Uploader;
+import br.com.itau.mercadoLivre.model.Emails;
+import br.com.itau.mercadoLivre.model.Opiniao;
+import br.com.itau.mercadoLivre.model.Pergunta;
 import br.com.itau.mercadoLivre.model.Produto;
 import br.com.itau.mercadoLivre.model.Usuario;
-import br.com.itau.mercadoLivre.model.Emails;
 import br.com.itau.mercadoLivre.repository.CategoriaRepository;
-import br.com.itau.mercadoLivre.repository.ProdutoRepository;
 import br.com.itau.mercadoLivre.repository.OpiniaoRepository;
 import br.com.itau.mercadoLivre.repository.PerguntaRepository;
+import br.com.itau.mercadoLivre.repository.ProdutoRepository;
 
 
 @RestController

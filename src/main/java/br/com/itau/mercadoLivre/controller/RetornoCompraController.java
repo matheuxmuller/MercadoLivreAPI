@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.zup.mercadoLivre.form.RetornoPagSeguroForm;
-import br.com.zup.mercadoLivre.model.Compra;
-import br.com.zup.mercadoLivre.repository.CompraRepository;
+import br.com.itau.mercadoLivre.form.RetornoPagSeguroForm;
+import br.com.itau.mercadoLivre.model.Compra;
+import br.com.itau.mercadoLivre.repository.CompraRepository;
 	
 @RestController
 public class RetornoCompraController {

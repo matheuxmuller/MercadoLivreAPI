@@ -1,18 +1,18 @@
+package br.com.itau.mercadoLivre.model;
+
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-package br.com.itau.mercadoLivre.model;
-
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import br.com.zup.mercadoLivre.enums.StatusTransacao;
+import br.com.itau.mercadoLivre.enums.StatusTransacao;
 
 @Entity
 public class Transacao {

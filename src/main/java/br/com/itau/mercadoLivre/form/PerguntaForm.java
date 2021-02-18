@@ -2,14 +2,15 @@ package br.com.itau.mercadoLivre.form;
 
 import java.util.Optional;
 
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.zup.mercadolivre.model.Pergunta;
-import br.com.zup.mercadolivre.model.Produto;
-import br.com.zup.mercadolivre.model.Usuario;
-import br.com.zup.mercadolivre.repository.ProdutoRepository;
+import br.com.itau.mercadoLivre.model.Pergunta;
+import br.com.itau.mercadoLivre.model.Produto;
+import br.com.itau.mercadoLivre.model.Usuario;
+import br.com.itau.mercadoLivre.repository.ProdutoRepository;
 
 public class PerguntaForm {
 	

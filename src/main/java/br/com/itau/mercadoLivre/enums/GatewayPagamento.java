@@ -1,4 +1,4 @@
-package br.com.itau.mercadolivre.enums;
+package br.com.itau.mercadoLivre.enums;
 
 public enum GatewayPagamento {
 	

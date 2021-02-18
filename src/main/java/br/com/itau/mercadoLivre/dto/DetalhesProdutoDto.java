@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-import br.com.itau.mercadoLivre.model.CalculoOpiniao;
+import br.com.itau.mercadoLivre.model.OpinioesCalculations;
 import br.com.itau.mercadoLivre.model.Produto;
 
 public class DetalhesProdutoDto {
@@ -27,7 +27,7 @@ public class DetalhesProdutoDto {
 		this.linksImagens = produto.mapImagens(imagem -> imagem.getLink());
 		this.perguntas = produto.mapPerguntas(pergunta -> pergunta.getTitulo());
 
-		CalculoOpiniao calculoOpiniao = produto.getCalculoOpiniao();
+		OpinioesCalculations calculoOpiniao = produto.getOpinioesCalculations();
 			
 		this.opinioes = calculoOpiniao.mapOpinioes(opiniao -> {
 			return Map.of("titulo", opiniao.getTitulo(),"descricao",opiniao.getDescricao());

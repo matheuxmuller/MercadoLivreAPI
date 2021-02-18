@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.zup.mercadolivre.dto.CompraDto;
-import br.com.zup.mercadolivre.form.CompraForm;
-import br.com.zup.mercadolivre.enums.GatewayPagamento;
-import br.com.zup.mercadolivre.model.Compra;
-import br.com.zup.mercadolivre.model.Produto;
-import br.com.zup.mercadolivre.model.Usuario;
-import br.com.zup.mercadolivre.repository.CompraRepository;
-import br.com.zup.mercadolivre.repository.ProdutoRepository;
+import br.com.itau.mercadoLivre.dto.CompraDto;
+import br.com.itau.mercadoLivre.enums.GatewayPagamento;
+import br.com.itau.mercadoLivre.form.CompraForm;
+import br.com.itau.mercadoLivre.model.Compra;
+import br.com.itau.mercadoLivre.model.Produto;
+import br.com.itau.mercadoLivre.model.Usuario;
+import br.com.itau.mercadoLivre.repository.CompraRepository;
+import br.com.itau.mercadoLivre.repository.ProdutoRepository;
 
 @RestController
 @RequestMapping("/compra")

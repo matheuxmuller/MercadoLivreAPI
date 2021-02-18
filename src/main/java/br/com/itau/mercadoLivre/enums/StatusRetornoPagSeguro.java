@@ -1,4 +1,4 @@
-package br.com.zup.mercadoLivre.enums;
+package br.com.itau.mercadoLivre.enums;
 
 public enum StatusRetornoPagSeguro {
 

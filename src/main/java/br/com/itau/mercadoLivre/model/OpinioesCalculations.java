@@ -5,11 +5,11 @@ import java.util.OptionalDouble;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class CalculoOpiniao {
+public class OpinioesCalculations {
 
 	private List<Opiniao> opinioes;
 
-	public CalculoOpiniao(List<Opiniao> opinioes) {
+	public OpinioesCalculations(List<Opiniao> opinioes) {
 		this.opinioes = opinioes;
 	}
 	

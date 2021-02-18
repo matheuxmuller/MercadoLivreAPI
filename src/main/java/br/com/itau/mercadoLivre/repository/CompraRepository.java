@@ -1,4 +1,4 @@
-package br.com.itau.mercadolivre.repository;
+package br.com.itau.mercadoLivre.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.itau.mercadoLivre.model.Compra;

@@ -11,10 +11,10 @@ import javax.validation.constraints.Size;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.itau.mercadolivre.model.Opiniao;
-import br.com.itau.mercadolivre.model.Produto;
-import br.com.itau.mercadolivre.model.Usuario;
-import br.com.itau.mercadolivre.repository.ProdutoRepository;
+import br.com.itau.mercadoLivre.model.Opiniao;
+import br.com.itau.mercadoLivre.model.Produto;
+import br.com.itau.mercadoLivre.model.Usuario;
+import br.com.itau.mercadoLivre.repository.ProdutoRepository;
 
 public class OpiniaoForm {
 
