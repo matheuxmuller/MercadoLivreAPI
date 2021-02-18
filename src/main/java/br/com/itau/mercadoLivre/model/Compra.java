@@ -1,5 +1,10 @@
 package br.com.itau.mercadoLivre.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,12 +13,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import br.com.itau.mercadoLivre.form.RetornoPagSeguroForm;
 import br.com.itau.mercadoLivre.enums.GatewayPagamento;
 import br.com.itau.mercadoLivre.enums.StatusCompra;
+import io.jsonwebtoken.lang.Assert;
 
 @Entity
 public class Compra {
@@ -46,6 +54,9 @@ public class Compra {
 	@NotNull
 	@Valid	
 	private Usuario usuario;
+
+	@OneToMany(mappedBy = "compra", cascade = CascadeType.MERGE)
+	private List<Transacao> transacoes = new ArrayList<Transacao>();
 	
 	public Compra() { }
 
@@ -69,7 +80,7 @@ public class Compra {
 	public Long getQuantidade() {
 		return quantidade;
 	}
-
+	
 	public StatusCompra getStatusCompra() {
 		return statusCompra;
 	}
@@ -82,4 +93,19 @@ public class Compra {
 		return gateway;
 	}
 	
+	public void tentativaPagamento(@Valid RetornoPagSeguroForm request) {
+	    Transacao novaTransacao = request.toTransacao(this);
+	    Assert.isTrue(!this.transacoes.contains(novaTransacao), "Já existe uma transação igual a essa "+novaTransacao);
+	    Assert.isTrue(trasacoesConcluidasComSucesso().isEmpty(), "Essa compra já foi realizada");	    
+	    this.transacoes.add(novaTransacao);
+	}
+
+	private List<Transacao> trasacoesConcluidasComSucesso() {
+		 List<Transacao> transacoesConcluidasComSucesso = this.transacoes.stream()
+				 	.filter(Transacao :: concluidaComSucesso)
+		            .collect(Collectors.toList());
+		    Assert.isTrue(transacoesConcluidasComSucesso.size() <= 1, "");
+		    return transacoesConcluidasComSucesso;
+	}
+			
 }
