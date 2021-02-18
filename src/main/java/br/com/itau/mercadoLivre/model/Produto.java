@@ -17,46 +17,43 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "tb_produto")
 public class Produto {
-
-	/**
-	 * ESSA TA OK *
-	 */
-
+		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	 
 	@NotBlank
 	@Column(nullable = false)
 	private String nome;
-
+	
 	@NotNull
-	@Column(nullable = false)
+	@Column(nullable = false)	
 	private BigDecimal valor;
-
+	
 	@NotNull
-	@Column(nullable = false)
+	@Column(nullable = false)		
 	private Long quantidade;
-
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "produto_id")
 	private List<Caracteristica> caracteristicas = new ArrayList<Caracteristica>();
-
+	
 	@NotBlank
 	@Column(nullable = false, length = 1000)
 	private String descricao;
-
+	
 	@NotNull
 	@OneToOne(cascade = CascadeType.ALL)
 	private Categoria categoria;
-
+	
+	@NotNull
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	private Usuario usuario;
 
@@ -64,13 +61,18 @@ public class Produto {
 
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
 	private List<ImagemProduto> imagens = new ArrayList<ImagemProduto>();
-
-	public Produto() {
-	}
-
+	
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+	private List<Opiniao> opinioes = new ArrayList<Opiniao>();
+	
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+	private List<Pergunta> perguntas = new ArrayList<Pergunta>();
+				
+	public Produto() { }
+	
 	public Produto(@NotBlank String nome, @NotNull BigDecimal valor, @NotNull Long quantidade,
 			List<Caracteristica> caracteristicas, @NotBlank String descricao, @NotNull Categoria categoria,
-			Usuario usuario) {
+			@NotNull Usuario usuario) {
 		this.nome = nome;
 		this.valor = valor;
 		this.quantidade = quantidade;
@@ -79,7 +81,7 @@ public class Produto {
 		this.categoria = categoria;
 		this.usuario = usuario;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -108,21 +110,49 @@ public class Produto {
 		return categoria;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
 	public LocalDateTime getCadastradoEm() {
 		return cadastradoEm;
 	}
+ 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	
+	public List<Opiniao> getOpinioes() {
+		return opinioes;
+	}
+	
+	public List<Pergunta> getPerguntas() {
+		return perguntas;
+	}
 
 	public void associaImagens(List<String> links) {
-		List<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(this, link))
+		List<ImagemProduto> imagens = links.stream()
+				.map(link -> new ImagemProduto(this, link))
 				.collect(Collectors.toList());
+		
 		this.imagens.addAll(imagens);
+	}
+
+	public <T> List<T> mapCaracteristicas(Function<Caracteristica, T> funcaoMap) {
+		return this.caracteristicas.stream().map(funcaoMap).collect(Collectors.toList());
 	}
 
 	public <T> List<T> mapImagens(Function<ImagemProduto, T> funcaoMap) {
 		return this.imagens.stream().map(funcaoMap).collect(Collectors.toList());
 	}
+
+	public <T extends Comparable<T>> List<T> mapPerguntas(Function<Pergunta, T> funcaoMap) {
+		return this.perguntas.stream().map(funcaoMap).collect(Collectors.toList());
+	}
+
+	public OpinioesCalculations getOpinioesCalculations() {
+		return new OpinioesCalculations(this.opinioes);
+	}
+
+	public Produto abateEstoque(@Positive Long quantidade) {
+		this.quantidade -= quantidade;
+		return this;
+	}
+	
 }
