@@ -78,3 +78,12 @@ No Postman selecionar o método POST:
 > OBS: No momento de inserção das imagens, caso o token autenticado seja diferente do token do usuário que registrou o produto, irá retornar um  http status 403
 
 * * *
+
+### Endpoint /produtos/{id}/opiniao
+``` 
+{
+    "notas": 4,
+    "titulo": "Produto bom",
+    "descricao": "Itens de ótima qualidade",
+    "nomeProduto": "Conjunto Cama Box"
+}
