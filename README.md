@@ -87,3 +87,20 @@ No Postman selecionar o método POST:
     "descricao": "Itens de ótima qualidade",
     "nomeProduto": "Conjunto Cama Box"
 }
+```
+
+
+### Endpoint /produtos/{id}/pergunta
+``` 
+{
+    "titulo": "Este produto tem boa durabilidade?"
+    "nomeProduto": "Conjunto Cama Box"
+}
+```
+
+* * *
+
+> OBS: No momento de registro de uma pergunta de um usuário, o vendedor-dono do produto recebe um "e-mail falso" via console, com um fake-link pra pergunta, o e-mail do remetente e do serviço de perguntas do Mercado Livre.
+
+* * *
+

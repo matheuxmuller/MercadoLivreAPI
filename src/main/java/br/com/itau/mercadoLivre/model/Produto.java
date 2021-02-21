@@ -17,11 +17,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Entity
+@Table(name = "tb_produtos")
 public class Produto {
 		
 	@Id
@@ -145,8 +147,8 @@ public class Produto {
 		return this.perguntas.stream().map(funcaoMap).collect(Collectors.toList());
 	}
 
-	public OpinioesCalculations getOpinioesCalculations() {
-		return new OpinioesCalculations(this.opinioes);
+	public CalculoOpiniao getOpinioesCalculations() {
+		return new CalculoOpiniao(this.opinioes);
 	}
 
 	public Produto abateEstoque(@Positive Long quantidade) {
